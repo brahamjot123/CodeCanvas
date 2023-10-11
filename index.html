@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simple Chatbot</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-output" id="chat-output">
+            <div class="bot-message">Hello! How can I assist you?</div>
+        </div>
+        <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
+    </div>
+    
+    
+    
+    
+    <script>
+
+const chatOutput = document.getElementById("chat-output");
+const userInput = document.getElementById("user-input");
+
+const responses = {
+    "hi": "Hello!",
+    "hello": "Hi there!",
+    "i dont have friends": "I am Your Friend",
+    "you are a donkey": "I am not a donkey, I am a chatbot"
+};
+
+userInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        const userMessage = userInput.value.toLowerCase();
+        const botResponse = responses[userMessage] || "I'm not sure how to respond to that.";
+        addUserMessage(userMessage);
+        addBotMessage(botResponse);
+        userInput.value = "";
+    }
+});
+
+function addUserMessage(message) {
+    const userMessageDiv = document.createElement("div");
+    userMessageDiv.className = "user-message";
+    userMessageDiv.textContent = message;
+    chatOutput.appendChild(userMessageDiv);
+}
+
+function addBotMessage(message) {
+    const botMessageDiv = document.createElement("div");
+    botMessageDiv.className = "bot-message";
+    botMessageDiv.textContent = message;
+    chatOutput.appendChild(botMessageDiv);
+}
+</script>
+</body>
+</html>
